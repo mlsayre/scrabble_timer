@@ -11,3 +11,42 @@
  *= require_self
  *= require_tree .
  */
+body
+{
+text-align:center;
+font-size:30px;
+color:red;
+background-color:#zzz;
+}
+h1
+{
+color:red;
+text-align:center;
+}
+p
+{
+color:black;
+font-family:"Times New Roman";
+font-size:18px;
+}
+
+p.ex
+{
+	font-size:18px;
+	text-align:center;
+	padding: 0px 350px 0px 350px};}
+
+p2
+{
+color:black;
+font-family:"Times New Roman";
+font-size:18px;
+}
+
+p3
+{
+color:black;
+font-family:"Times New Roman";
+font-size:18px;
+}
+

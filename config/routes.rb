@@ -1,4 +1,12 @@
 ScrabbleTimer::Application.routes.draw do
+  get "main_pages/welcome"
+
+  get "main_pages/main"
+
+  get "main_pages/rules"
+
+  root :to => 'main_pages#welcome' #set root page
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
