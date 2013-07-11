@@ -7,7 +7,9 @@
  <p class="ex">
  <%= "Welcome, #{params[:player1]} and #{params[:player2]}!" %>
  <%= "#{params[:player1]} has #{params[:player1time]} minutes and #{params[:player2]} has #{params[:player2time]} minutes in which to play all of their turns for the game. Going beyond those times will result in a 10 point penalty per minute (or fraction of a minute) gone over." %>
- 
+ <br><br>
+  <button id="Start1Button" onclick="StartP1()"><%= params[:player1] %>, start the game.</button>
+ <button id="Start2Button" onclick="StartP2()"><%= params[:player2] %>, start the game.</button>
 <h2>
  <center><table border="1" cellpadding ="20" bgcolor="#DBF6FF">
 <tr>
@@ -15,13 +17,11 @@
 <td bgcolor="#FFDEDE"><div id='p2timer' /></div></td>
 </tr>
 </table>
- <button id="Start1Button" onclick="StartP1()"><%= params[:player1] %>, start the game.</button>
- <button id="Start2Button" onclick="StartP2()"><%= params[:player2] %>, start the game.</button>
-<br>
+
   <button id="Complete1Button" onclick="player1Pause()"><%= params[:player1] %> turn complete.</button>
   <button id="Complete2Button" onclick="player2Pause()"><%= params[:player2] %> turn complete.</button>
   <br>
-  <button id="PauseButton" onclick="GamePause()">Pause/Restart Game</button>
+  <button id="PauseButton" onclick="GamePause()">Pause/Resume Game</button>
 
 
 
