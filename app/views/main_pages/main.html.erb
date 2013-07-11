@@ -1,9 +1,44 @@
-
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
+  
+   <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "timer" %>
     <%= csrf_meta_tags %>
- 
+
+
  <p class="ex">
  <%= "Welcome, #{params[:player1]} and #{params[:player2]}!" %>
- <%= "#{params[:player1]} has #{params[:player1time]} minutes and #{params[:player2]} has #{params[:player2time]} minutes in which to play all of their turns for the game. Going beyond those times will result in 10 point penalties per fraction of a minute gone over." %>
-  
+ <%= "#{params[:player1]} has #{params[:player1time]} minutes and #{params[:player2]} has #{params[:player2time]} minutes in which to play all of their turns for the game. Going beyond those times will result in a 10 point penalty per minute (or fraction of a minute) gone over." %>
+ 
+<h2>
+ <center><table border="1" cellpadding ="20" bgcolor="#FFDEDE">
+<tr>
+<td><div id='p1timer' /></div></td>
+<td><div id='p2timer' /></div></td>
+</tr>
+</table>
+ <button onclick="p1start()"><%= params[:player1] %>, start the game.</button>
+ <button onclick="p2start()"><%= params[:player2] %>, start the game.</button>
+
+
+
+<!-- Player 1 timer code -->
+<script type="text/javascript">
+var i1 = <%= params[:player1time] %>;
+var t1 = i1 * 60;
+window.onload = CreateP1Timer("p1timer", t1);</script>
+
+
+
+<!-- Player 2 timer code -->
+<script type="text/javascript">
+var i2 = <%= params[:player2time] %>;
+var t2 = i2 * 60;
+window.onload = CreateP2Timer("p2timer", t2);</script>
+
+
+
+ 
+
+
+
+
+
