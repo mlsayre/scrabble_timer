@@ -3,7 +3,7 @@ var Timer2;
 var TotalSeconds1;
 var TotalSeconds2;
 
-// making 2 timers... probably an easier, less-code-y way...
+// making 2 timers... there's probably an easier, less-code-y way...
 // Thanks to "Vswe" http://forum.codecall.net/topic/51639-how-to-create-a-countdown-timer-in-javascript/
 // for the starting point
 function CreateP1Timer(TimerID1, Time1) {
