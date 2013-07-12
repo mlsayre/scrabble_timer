@@ -9,22 +9,6 @@ var P2Flag=0;
 var PauseFlag=0;
 var GLFlag=1;
 
-
-//button presses
-function doClick(Complete1Button, e)
-    {
-    if (e.keyCode == 13)
-        {
-        // Get the button the user wants to have clicked
-        var btn = document.getElementById(Complete1Button);
-        if (btn)
-        {
-            btn.click();
-            return false;
-        }
-    }
-}
-
 // making 2 timers... there's probably an easier, less-code-y way...
 // Thanks to "Vswe" http://forum.codecall.net/topic/51639-how-to-create-a-countdown-timer-in-javascript/
 // for the starting point
@@ -220,6 +204,19 @@ document.getElementById("Complete2Button").disabled = true;
 			StartP2();	
 		}
 }
+}
 
-
+//button presses
+function doClick(Complete1Button, e)
+    {
+    if (e.keyCode == 13)
+        {
+        // Get the button the user wants to have clicked
+        var btn = document.getElementById(Complete1Button);
+        if (btn)
+        {
+            btn.click();
+            return false;
+        }
+    }
 }

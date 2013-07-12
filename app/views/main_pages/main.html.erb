@@ -11,10 +11,14 @@
   <button id="Start1Button" onclick="StartP1()"><%= params[:player1] %> plays first.</button>
  <button id="Start2Button" onclick="StartP2()"><%= params[:player2] %> plays first.</button>
 <h2>
- <center><table border="1" cellpadding ="20" bgcolor="#DBF6FF">
+ <center><table border="2" bgcolor="#DBF6FF">
+ <tr>
+ 	<td style="padding: 10px;"><font size=5><center><%= params[:player1] %></center></font></td>
+ 	<td style="padding: 10px;"><font size=5><center><%= params[:player2] %></center></font></td>
+ </td>
 <tr>
-<td id="tdP1" bgcolor="#FFDEDE"><div id='p1timer' /></div></td>
-<td id="tdP2" bgcolor="#FFDEDE"><div id='p2timer' /></div></td>
+<td id="tdP1" bgcolor="#FFDEDE" style="padding: 50px;"><div id='p1timer' /></div></td>
+<td id="tdP2" bgcolor="#FFDEDE" style="padding: 50px;"><div id='p2timer' /></div></td>
 </tr>
 </table>
 
