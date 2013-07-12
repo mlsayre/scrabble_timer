@@ -7,10 +7,28 @@ var ManipTimer2;
 var P1Flag=0;
 var P2Flag=0;
 var PauseFlag=0;
+var GLFlag=1;
+
+
+//button presses
+function doClick(Complete1Button, e)
+    {
+    if (e.keyCode == 13)
+        {
+        // Get the button the user wants to have clicked
+        var btn = document.getElementById(Complete1Button);
+        if (btn)
+        {
+            btn.click();
+            return false;
+        }
+    }
+}
 
 // making 2 timers... there's probably an easier, less-code-y way...
 // Thanks to "Vswe" http://forum.codecall.net/topic/51639-how-to-create-a-countdown-timer-in-javascript/
 // for the starting point
+
 function CreateP1Timer(TimerID1, Time1) {
 Timer1 = document.getElementById(TimerID1);
 TotalSeconds1 = Time1;
@@ -19,19 +37,36 @@ TotalSeconds1 = Time1;
 document.getElementById("Complete1Button").disabled = true;
 document.getElementById("Complete2Button").disabled = true;
 document.getElementById("PauseButton").disabled = true;
-
+document.getElementById('StartText').style.visibility='hidden';
 UpdateTimer1()
 }
 
 function StartP1()
 {
-	document.getElementById("Start1Button").disabled = true;
-	document.getElementById("Start2Button").disabled = true;  
+//  document.getElementById("Start1Button").disabled = true; (disabled, not hidden)
+//	document.getElementById("Start2Button").disabled = true;  
+setTimeout(function (){
 	document.getElementById("Complete1Button").disabled = false;
+	}, 1100);
 document.getElementById("Complete2Button").disabled = true;
 document.getElementById("PauseButton").disabled = false;
+document.getElementById('Start1Button').style.visibility='hidden';
+document.getElementById('Start2Button').style.visibility='hidden';
+// change background color of table cells
+document.getElementById('tdP1').style.backgroundColor = "#BAFFBB";
+document.getElementById('tdP2').style.backgroundColor = "#FFDEDE";
 	P1Flag = 1;
 	setTimeout("Tick1()", 1000);
+
+// Message when the game starts - only shows once thanks to GLFlag flag
+if (GLFlag==1)
+{
+	document.getElementById('StartText').style.visibility='visible';
+setTimeout(function (){
+	document.getElementById('StartText').style.visibility='hidden';
+	}, 5000);
+GLFlag=0;
+}
 }
 
 function CreateP2Timer(TimerID2, Time2) {
@@ -43,13 +78,28 @@ UpdateTimer2()
 
 function StartP2()
 {
-	document.getElementById("Start1Button").disabled = true; 
-	document.getElementById("Start2Button").disabled = true; 
+//	document.getElementById("Start1Button").disabled = true; 
+//	document.getElementById("Start2Button").disabled = true; 
 	document.getElementById("Complete1Button").disabled = true;
-document.getElementById("Complete2Button").disabled = false;
+setTimeout(function (){
+	document.getElementById("Complete2Button").disabled = false;
+	}, 1100);
 document.getElementById("PauseButton").disabled = false;
+document.getElementById('Start1Button').style.visibility='hidden';
+document.getElementById('Start2Button').style.visibility='hidden';
+document.getElementById('tdP2').style.backgroundColor = "#BAFFBB";
+document.getElementById('tdP1').style.backgroundColor = "#FFDEDE";
 	P2Flag=1;
 	setTimeout("Tick2()", 1000);
+// Message when the game starts - only shows once thanks to GLFlag flag
+	if (GLFlag==1)
+{
+	document.getElementById('StartText').style.visibility='visible';
+setTimeout(function (){
+	document.getElementById('StartText').style.visibility='hidden';
+	}, 5000);
+GLFlag=0;
+}
 }
 
 function Tick1() {
@@ -128,8 +178,13 @@ function GamePause()
 {
 	if (PauseFlag==0)
 	{
-		document.getElementById("Complete1Button").disabled = true;
+// disable buttons
+document.getElementById("Complete1Button").disabled = true;
 document.getElementById("Complete2Button").disabled = true;
+
+// change player time boxes to grey
+document.getElementById('tdP1').style.backgroundColor = "#D6D6D6";
+document.getElementById('tdP2').style.backgroundColor = "#D6D6D6";
 	
 		if (P1Flag==1)
 		{
@@ -165,4 +220,6 @@ document.getElementById("Complete2Button").disabled = true;
 			StartP2();	
 		}
 }
+
+
 }
