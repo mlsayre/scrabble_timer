@@ -2,34 +2,75 @@
    <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "timer" %>
     <%= csrf_meta_tags %>
-
-
- <p class="ex">
+ 
+<!-- how to use a ruby variable in Javascript -->
+ <script type="text/javascript">
+  var Name1 = "<%= params[:player1] %>";
+  var Name2 = "<%= params[:player2] %>";
+</script>
+ 
+ 	<p class="ex">
  <%= "Welcome, #{params[:player1]} and #{params[:player2]}!" %>
- <%= "#{params[:player1]} has #{params[:player1time]} minutes and #{params[:player2]} has #{params[:player2time]} minutes in which to play all of their turns for the game. Going beyond those times will result in a 10 point penalty per minute (or fraction of a minute) gone over. To start, press the button of the player who will be making the first move." %>
- <br><br>
-  <button id="Start1Button" onclick="StartP1()"><%= params[:player1] %> plays first.</button>
- <button id="Start2Button" onclick="StartP2()"><%= params[:player2] %> plays first.</button>
+ <%= "#{params[:player1]} has #{params[:player1time]} minutes and #{params[:player2]} has #{params[:player2time]} minutes in which to play all of their turns. Going beyond those times will result in a 10 point penalty per minute (or fraction of a minute) gone over. Who will be starting the game? When ready to begin, click:" %>
+<br>
+ <button id="Start1Button" onclick="StartGame1()"><%= params[:player1] %> plays first.</button>
+ <button id="Start2Button" onclick="StartGame2()"><%= params[:player2] %> plays first.</button>
+  <center>
+ <!-- possible messages -->
+ 	<table cellpadding="0" border="0" >
+ 	<tr>
+ 		<td height="34" width="80%"><center><div id="MessageText"></center></div></td>
+ 	</tr></table>
+ 
+ 
+ 
 <h2>
+<center><table border="2" bgcolor="#69FFFF">
+<tr>
+	<td style="padding: 2px; height:12px; background-color:#69FFFF; min-width: 100px;"><font size=6><center><div id="P1ScoreShow"></div></center></font></td>
+	<td colspan="2" style="padding: 2px; height:38px; background-color:#69FFFF"><font size=5><center>points</center></font></td>
+ 	<td style="padding: 2px; height:12px; background-color:#69FFFF; min-width: 100px;"><font size=6><center><div id="P2ScoreShow"></div></center></font></td>
+
+</table>
  <center><table border="2" bgcolor="#DBF6FF">
  <tr>
  	<td style="padding: 10px;"><font size=5><center><%= params[:player1] %></center></font></td>
  	<td style="padding: 10px;"><font size=5><center><%= params[:player2] %></center></font></td>
  </td>
 <tr>
-<td id="tdP1" bgcolor="#FFDEDE" style="padding: 50px;"><div id='p1timer' /></div></td>
-<td id="tdP2" bgcolor="#FFDEDE" style="padding: 50px;"><div id='p2timer' /></div></td>
+<td id="tdP1" bgcolor="#FFDEDE" style="padding: 40px; min-width: 200px;"><center><div id='p1timer' /></div></center></td>
+<td id="tdP2" bgcolor="#FFDEDE" style="padding: 40px; min-width: 200px;"><center><div id='p2timer' /></div></center></td>
 </tr>
 </table>
+
 
   <button id="Complete1Button" onclick="player1Pause()"><%= params[:player1] %> turn complete.</button>
   <button id="Complete2Button" onclick="player2Pause()"><%= params[:player2] %> turn complete.</button>
   <br>
   <button id="PauseButton" onclick="GamePause()">Pause/Resume Game</button>
-  <div id="StartText"><h3>Good luck!</h3></div>
+  <button id="EndButton" onclick="javascript: if (confirm('Are you sure the game is over?')) GameEnd();">End Game</button>
+  <button id="NewButton" onclick="javascript: if (confirm('Play new game with same settings?')) GameRestart();">New Game</button><br>
+  
+  <!-- Scorekeeping stuff -->
+  <font size="6"><u>Score Tracker</u></font>
+ <p><%= params[:player1] %>: <input onkeypress="return isNumberKey(event)" type="text" size="3" name="score1" id="score1"/>
+<input type="button" onclick="retrieve1('score1');" value="Submit"/>
 
+<%= params[:player2] %>: <input onkeypress="return isNumberKey(event)" type="text" size="3" name="score2" id="score2"/>
+<input type="button" onclick="retrieve2('score2');" value="Submit"/>
 
+<!-- previous moves score list -->
+<center><table cellpadding="0" border="0" >
+	<tr>
+		<td width="30%"><font size = 3><center><u><%= params[:player1] %> scores</u></center></font></td>
+		<td width="30%"><font size = 3><center><u><%= params[:player2] %> scores</u></center></font></td>
 
+	</tr>
+ 	<tr>
+ 		<td width="30%"><font size = 3><center><div id="P1History"></center></div></font></td>
+ 		<td width="30%"><font size = 3><center><div id="P2History"></center></div></font></td>
+ 	</tr></table>
+ </center>
 <!-- Player 1 timer code -->
 <script type="text/javascript">
 var i1 = <%= params[:player1time] %>;
@@ -43,7 +84,6 @@ window.onload = CreateP1Timer("p1timer", t1);</script>
 var i2 = <%= params[:player2time] %>;
 var t2 = i2 * 60;
 window.onload = CreateP2Timer("p2timer", t2);</script>
-
 
 
  
