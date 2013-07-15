@@ -19,9 +19,9 @@ and the time allotted to each player. </p>
   <%= label_tag(:player2, "Player Two:") %>
   <%= text_field_tag (:player2), "Player Two", :maxlength => 20, :size => 28 %><br>
   <%= label_tag(:player1time, "P1 Time (minutes):") %>
-  <%= text_field_tag (:player1time), "25", :maxlength => 3, :size => 2 %>     
+  <%= text_field_tag (:player1time), "25", :maxlength => 3, :size => 2, :onkeypress=> "return isNumberKey(event)" %>     
   <%= label_tag(:player2time, "P2 Time (minutes):") %>
-  <%= text_field_tag (:player2time), "25", :maxlength => 3, :size => 2 %><br>
+  <%= text_field_tag (:player2time), "25", :maxlength => 3, :size => 2, :onkeypress=> "return isNumberKey(event)" %><br>
   (note: 25 minutes per player is standard)<br><br>
   <%= submit_tag("Submit") %></p>
 <% end %>
